@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Ziyang Song</title>
+  
+  <meta name="author" content="Ziyang Song">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+
+<body>
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <tr style="padding:0px">
+      <td style="padding:0px">
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr style="padding:0px">
+            <td style="padding:2.5%;width:63%;vertical-align:middle">
+              <p style="text-align:center">
+                <name>Ziyang Song</name>
+              </p>
+              <p>
+                I am currently a 2nd-year PhD student at <a href="https://www.polyu.edu.hk">The Hong Kong Polytechnic University</a>, supervised by <a href="https://yang7879.github.io">Prof. Bo Yang</a>.
+              </p>
+              <p>
+                Previously, I obtained my M.Eng and B.Eng degrees (<a href="https://en.wikipedia.org/wiki/Special_Class_for_the_Gifted_Young">Honors Youth Program</a>) from <a href="http://www.xjtu.edu.cn">Xi'an Jiaotong University</a>, supervised by <a href="http://www.aiar.xjtu.edu.cn/info/1046/1245.htm">Prof. Zejian Yuan</a>.
+                During my M.Eng study, I interned at <a href="https://www.sensetime.com/en">SenseTime</a> with <a href="https://scholar.google.com/citations?hl=zh-CN&user=gurERzcAAAAJ">Dongliang Wang</a>, and <a href="https://www.tencent.com/en-us/business/robotics.html">Tencent Robotics X</a> with <a href=https://sg.linkedin.com/in/wanchao-chi-23835178"">Wanchao Chi</a>.
+              </p>
+              <p>
+                My research interests lie in computer vision and machine learning. Currently I am focusing on unsupervised methods for 3D segmentation and reconstruction.
+              </p>
+              <p style="text-align:center">
+                <a href="mailto:ziyang.song@connect.polyu.hk">Email</a> &nbsp/&nbsp
+                <a href="data/JonBarron-CV.pdf">CV</a> &nbsp/&nbsp
+                <a href="data/JonBarron-bio.txt">Bio</a> &nbsp/&nbsp
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=7YcpCEwAAAAJ">Google Scholar</a> &nbsp/&nbsp
+                <a href="https://github.com/Szy-Young">Github</a>
+              </p>
+            </td>
+            <td style="padding:2.5%;width:40%;max-width:40%">
+              <a href="images/JonBarron.jpg"><img style="width:100%;max-width:100%" alt="profile photo" src="images/JonBarron_circle.jpg" class="hoverZoomLink"></a>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Publications</heading>
+            </td>
+          </tr>
+        </tbody></table>
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+
+          <tr onmouseout="malle_stop()" onmouseover="malle_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='malle_image'>
+                  <img src='images/MalleConv_after.jpg' width="160"></div>
+                <img src='images/MalleConv_before.jpg' width="160">
+              </div>
+              <script type="text/javascript">
+                function malle_start() {
+                  document.getElementById('malle_image').style.opacity = "1";
+                }
+
+                function malle_stop() {
+                  document.getElementById('malle_image').style.opacity = "0";
+                }
+                malle_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Learning End-to-End Action Interaction by Paired-Embedding Data Augmentation</papertitle>
+              <br>
+              <strong>Z. Song</strong>, Z. Yuan, C. Zhang, W. Chi, Y. Ling, S. Zhang
+              <br>
+              <em>ACCV</em>, 2020
+              <br>
+              <a href="https://openaccess.thecvf.com/content/ACCV2020/html/Song_Learning_End-to-End_Action_Interaction_by_Paired-Embedding_Data_Augmentation_ACCV_2020_paper.html">Open Access</a> /
+              <a href="https://arxiv.org/abs/2007.08071">arXiv</a>
+              <p></p>
+              <p>
+                A new task to learn end-to-end action interaction, evaluation metrics, and a Paired-Embedding (PE) data augmentation method for efficient learning with small data.
+              </p>
+            </td>
+          </tr>
+					
+          <tr onmouseout="nerfsuper_stop()" onmouseover="nerfsuper_start()">
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='nerfsuper_image'><video  width=100% height=100% muted autoplay loop>
+                <source src="images/nerf_supervision.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                </video></div>
+                <img src='images/nerf_supervision.jpg' width="160">
+              </div>
+              <script type="text/javascript">
+                function nerfsuper_start() {
+                  document.getElementById('nerfsuper_image').style.opacity = "1";
+                }
+
+                function nerfsuper_stop() {
+                  document.getElementById('nerfsuper_image').style.opacity = "0";
+                }
+                nerfsuper_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <papertitle>Attention-Oriented Action Recognition for Real-Time Human-Robot Interaction</papertitle>
+              <br>
+              <strong>Z. Song</strong>, Z. Yin, Z. Yuan, C. Zhang, W. Chi, Y. Ling, S. Zhang
+              <br>
+              <em>ICPR</em>, 2020  
+              <br>
+							<a href="https://arxiv.org/abs/2007.01065">arXiv</a> / 
+							<a href="https://github.com/Szy-Young/AGANet">code</a>			
+              <p></p>
+              <p>
+                A multi-level network framework for real-time human action recognition from RGB-D videos in HRI scenarios.
+              </p>
+            </td>
+          </tr>
+
+        </tbody></table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
