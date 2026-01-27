@@ -137,9 +137,9 @@
             text-justify: inter-word; /* 英文单词间距优化 */
         }
 
-        /* Video Results 模块整体样式（加宽+左右留空） */
+        /* Video Results 模块整体样式 */
         .video-results-section {
-            max-width: 1200px; /* 加宽模块最大宽度 */
+            max-width: 1200px; /* 左右留空，不撑满页面 */
             margin: 4rem auto;
             padding: 0 1rem;
             color: #ffffff;
@@ -163,51 +163,63 @@
             line-height: 1.6;
         }
 
-        /* 2×2 网格布局（加宽Grid项） */
+        /* 2×3 网格布局（核心：适配6个视频，响应式） */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* 加宽最小列宽 */
-            gap: 2.5rem; /* 网格间距 */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 3列基础，自适应换行 */
+            grid-template-rows: repeat(2, 1fr); /* 固定2行 */
+            gap: 2rem; /* 网格间距，适配3列布局 */
         }
 
-        /* 每个网格项（圆角画框） */
+        /* 每个网格项（直角画框，移除圆角） */
         .video-grid-item {
             background-color: rgba(255, 255, 255, 0.05); /* 浅透明白色画框 */
-            border-radius: 12px; /* 圆角 */
+            border-radius: 12px; /* 圆角大小，可按需调整 */
             padding: 1rem;
             overflow: hidden; /* 防止内容溢出 */
         }
 
-        /* 10:3 比例图片容器（裁剪核心：固定宽高比） */
+        /* 6.1:1.8 比例图片容器（固定宽高比 + 直角） */
         .result-img-container {
-            aspect-ratio: 10/3; /* 强制10:3宽高比 */
-            border-radius: 8px;
+            aspect-ratio: 19.4/5.6; /* 核心：19.4/5.6宽高比 */
             overflow: hidden; /* 裁剪图片溢出部分 */
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* 与文本框的间距 */
         }
 
-        /* 结果图片样式（自适应裁剪核心属性） */
+        /* 结果图片样式（统一居中裁剪） */
         .result-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 核心：短边填满，长边居中裁剪 */
-            object-position: center; /* 居中裁剪，保留关键内容 */
+            object-fit: cover; /* 短边填满，长边居中裁剪 */
+            object-position: center; /* 统一居中裁剪 */
         }
 
-        /* 1:1 视频容器（裁剪核心：固定正方形显示区域） */
+        /* 深色文本框容器（直角 + 白色文字） */
+        .result-text-container {
+            height: 215px; /* 核心：固定纵向高度（可按需调整，比如40px/50px） */
+            background-color: rgba(45, 45, 45, 0.8); /* 深色背景（可调整透明度） */
+            border-radius: 12px; /* 圆角大小，可按需调整 */
+            color: #ffffff; /* 白色文字 */
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.8rem; /* 文本框与视频间距 */
+            font-family: "Comic Sans MS", cursive, sans-serif; /* 核心：改成Comic Sans字体（加备选兼容） */
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        /* 1:1 视频容器（固定正方形显示区域 + 直角） */
         .result-video-container {
             aspect-ratio: 1/1; /* 强制1:1宽高比 */
-            border-radius: 8px;
             overflow: hidden; /* 裁剪视频溢出部分 */
         }
 
-        /* 视频样式（自适应裁剪核心属性） */
+        /* 视频样式（核心：统一短边填满+长边居中裁剪） */
         .result-video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 核心：短边填满1:1容器，长边居中裁剪 */
-            object-position: center; /* 居中裁剪，适配832x480/480x832分辨率 */
-            background-color: #00000030; /* 视频加载前背景 */
+            object-fit: cover; /* 短边填满1:1容器，长边居中裁剪 */
+            object-position: center; /* 统一居中裁剪 */
+            background-color: #00000030; /* 视频加载前浅黑背景 */
         }
 
         /* 响应式适配：小屏幕下调整字体和按钮 */
@@ -252,7 +264,7 @@
 
         <!-- 椭圆形链接：保留占位，需替换为实际链接 -->
         <div class="links">
-            <a href="https://arxiv.org/" class="link-btn">ArXiv</a>
+            <a href="https://arxiv.org/abs/2601.17756" class="link-btn">ArXiv</a>
             <a href="https://your-benchmark-link.com" class="link-btn">Benchmark</a>
         </div>
     </div>
@@ -263,15 +275,20 @@
         <p>Existing Subject-to-Video Generation (S2V) methods have achieved high-fidelity and subject-consistent video generation, yet remain constrained to single-view subject references. This limitation renders the S2V task reducible to an S2I + I2V pipeline, failing to exploit the full potential of video subject control. In this work, we propose and address the challenging Multi-View S2V (MV-S2V) task, which synthesizes videos from multiple reference views to enforce 3D-level subject consistency. Regarding the scarcity of training data, we first develop a synthetic data curation pipeline to generate highly customized synthetic data, complemented by a small-scale real-world captured dataset to boost the training of MV-S2V. Another key issue lies in the potential confusion between cross-subject and cross-view references in conditional generation. To overcome this, we further introduce Temporally Shifted RoPE (TS-RoPE) to distinguish between different subjects and distinct views of the same subject in reference conditioning. Our framework achieves superior 3D subject consistency w.r.t. multi-view reference images and high-quality visual outputs, establishing a new meaningful direction for subject-driven video generation.</p>
     </div>
 
-    <!-- Video Results 模块（含自适应裁剪+自动播放） -->
+    <!-- Video Results 模块（2×3 网格 + 直角容器 + 新增文本框） -->
     <div class="video-results-section">
         <h2>Video Results</h2>
         <p class="video-desc">Given multi-view reference images for subjects, our MV-S2V can generate videos with multi-view (3D) subject consistency.</p>
 
-        <!-- 2×2 视频结果网格（加宽+裁剪） -->
+        <!-- 2×3 视频结果网格 -->
         <div class="video-grid">
             <!-- 网格项1 -->
             <div class="video-grid-item">
+                <!-- 新增：深色文本框 -->
+                <div class="result-text-container">
+                    The video starts with a detailed figurine of a bald eagle with wings spread wide, perched on a textured wooden base in a well-lit rustic study room filled with shelves of old leather-bound books and antique globes.
+                    As the camera smoothly orbits around the eagle figurine, the background gradually reveals a vintage wooden desk adorned with an old brass lamp, a leather-bound journal, and a dried flower arrangement in a ceramic vase.
+                </div>
                 <div class="result-img-container">
                     <img src="./images/results_1_ref.png" alt="Result 1 Reference Images" class="result-img">
                 </div>
@@ -285,6 +302,11 @@
 
             <!-- 网格项2 -->
             <div class="video-grid-item">
+                <!-- 新增：深色文本框 -->
+                <div class="result-text-container">
+                    The video starts with a small, decorative food cart model with a green base and a red and white striped canopy, positioned on a wooden desk in a cozy home office.
+                    As the camera smoothly orbits around the food cart, the background gradually reveals shelves filled with colorful books, a vintage desk lamp casting a warm glow, and potted plants adding a touch of greenery to the room.
+                </div>
                 <div class="result-img-container">
                     <img src="./images/results_2_ref.png" alt="Result 2 Reference Images" class="result-img">
                 </div>
@@ -298,6 +320,11 @@
 
             <!-- 网格项3 -->
             <div class="video-grid-item">
+                <!-- 新增：深色文本框 -->
+                <div class="result-text-container">
+                    The video starts with a small, wooden activity cube with colorful panels and metal locks, topped with a teal plastic handle, sitting on a child's playroom floor with a soft rug and scattered toys in the background.
+                    As the camera smoothly orbits around the activity cube, the background gradually reveals a low bookshelf filled with children's books and puzzles on one side, and a painted wall adorned with cheerful animal decals and a cozy reading nook with cushions on the other.
+                </div>
                 <div class="result-img-container">
                     <img src="./images/results_3_ref.png" alt="Result 3 Reference Images" class="result-img">
                 </div>
@@ -311,12 +338,55 @@
 
             <!-- 网格项4 -->
             <div class="video-grid-item">
+                <!-- 新增：深色文本框 -->
+                <div class="result-text-container">
+                    In a bright, modern playroom filled with colorful shelves and children's books, a young woman dressed in a cream quilted jacket and a soft grey sweater holds a vibrant green and yellow toy truck.
+                    She smoothly rotates the toy truck with her hands, showcasing its details while glancing down at it with an affectionate smile, clearly enjoying the moment.
+                    The background features playful wall art and cozy cushions, creating a warm, inviting atmosphere.
+                </div>
                 <div class="result-img-container">
                     <img src="./images/results_4_ref.png" alt="Result 4 Reference Images" class="result-img">
                 </div>
                 <div class="result-video-container">
                     <video autoplay muted loop controls class="result-video">
                         <source src="./images/results_4_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <!-- 网格项5 -->
+            <div class="video-grid-item">
+                <!-- 新增：深色文本框 -->
+                <div class="result-text-container">
+                    In a minimalist room with soft white walls, a young man wearing a cream and black striped knit cardigan holds a wooden nutcracker soldier.
+                    He gently rotates the nutcracker with both hands, showcasing its detailed blue uniform, furry hat, and painted features, then looks down at the figure with an appreciative smile.
+                </div>
+                <div class="result-img-container">
+                    <img src="./images/results_5_ref.png" alt="Result 5 Reference Images" class="result-img">
+                </div>
+                <div class="result-video-container">
+                    <video autoplay muted loop controls class="result-video">
+                        <source src="./images/results_5_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <!-- 网格项6 -->
+            <div class="video-grid-item">
+                <!-- 新增：深色文本框 -->
+                <div class="result-text-container">
+                    In a modern minimalist kitchen setting with sleek white cabinets and hanging green plants near a large window, a young man wearing a navy blazer and light gray shirt holds a small wooden toy oven painted in natural wood tones and soft green.
+                    He smoothly rotates the toy oven with both hands, showcasing its detailed front panel and craftsmanship.
+                    As he turns the toy, he smiles confidently and glances at it with a sense of admiration and pride.
+                </div>
+                <div class="result-img-container">
+                    <img src="./images/results_6_ref.png" alt="Result 6 Reference Images" class="result-img">
+                </div>
+                <div class="result-video-container">
+                    <video autoplay muted loop controls class="result-video">
+                        <source src="./images/results_6_video.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
