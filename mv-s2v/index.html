@@ -179,7 +179,7 @@
             overflow: hidden; /* 防止内容溢出 */
         }
 
-        /* 6.1:1.8 比例图片容器（固定宽高比 + 直角） */
+        /* 19.4/5.6 比例图片容器（固定宽高比 + 直角） */
         .result-img-container {
             aspect-ratio: 19.4/5.6; /* 核心：19.4/5.6宽高比 */
             overflow: hidden; /* 裁剪图片溢出部分 */
@@ -220,6 +220,46 @@
             object-fit: cover; /* 短边填满1:1容器，长边居中裁剪 */
             object-position: center; /* 统一居中裁剪 */
             background-color: #00000030; /* 视频加载前浅黑背景 */
+        }
+
+        /* Citation 模块整体样式 */
+        .citation-section {
+            max-width: 900px; /* 和 Abstract 宽度一致，左右留空 */
+            margin: 4rem auto;
+            padding: 0 1rem;
+            color: #ffffff;
+        }
+
+        /* Citation 标题：居中，和其他模块标题风格统一 */
+        .citation-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        /* 引导文字样式 */
+        .citation-desc {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            text-align: left;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* 引用文本框样式（适配BibTeX格式，等宽字体） */
+        .citation-box {
+            background-color: rgba(30, 30, 30, 0.7); /* 深色背景，和文本框风格统一 */
+            color: #ffffff;
+            font-family: "Consolas", "Monaco", monospace; /* 等宽字体，适合代码/引用格式 */
+            font-size: 0.95rem;
+            line-height: 1.8;
+            padding: 1.5rem;
+            border-radius: 12px; /* 轻微圆角，和页面风格协调 */
+            white-space: pre-wrap; /* 保留换行和空格，保证BibTeX格式正确 */
+            word-break: break-all; /* 防止长字符溢出 */
+            user-select: all; /* 点击可全选文本，方便复制 */
         }
 
         /* 响应式适配：小屏幕下调整字体和按钮 */
@@ -395,5 +435,18 @@
     </div>
 
     <!-- 若后续需要添加其他内容，可在此处继续扩展 -->
+
+    <!-- Citation 模块 -->
+    <div class="citation-section">
+        <h2>Citation</h2>
+        <p class="citation-desc">If you find this project useful in your research, please consider citing:</p>
+        <div class="citation-box">@article{song2026mvs2v,
+      title={{MV-S2V}: Multi-View Subject-Consistent Video Generation},
+      author={Song, Ziyang and Gong, Xinyu and Liu, Bangya and Zhao, Zelin},
+      journal={arXiv preprint},
+      volume={arXiv:2601.17756},
+      year={2026}
+    }</div>
+    </div>
 </body>
 </html>
