@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MV-S2V Project Page</title>
+    <style>
+        /* 全局样式：深灰色背景，重置默认样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #2c2c2c; /* 深灰色背景 */
+            font-family: 'Segoe UI', 'Arial', sans-serif; /* 兼顾艺术感与可读性 */
+        }
+
+        /* 顶部背景图容器：适配横向图片，内容居中叠加 */
+        .banner {
+            position: relative; /* 关键：为伪元素提供定位基准 */
+            width: 100%;
+            height: 500px; /* 适配横向图的高度，可根据图片调整 */
+            /* 移除原背景图设置，改由伪元素承载 */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            z-index: 1; /* 保证文字在背景图上层 */
+        }
+
+        /* 核心：伪元素承载背景图并设置透明度 */
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("./images/background.png"); /* 背景图路径 */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5; /* 透明度：0-1之间，0全透，1不透明，0.7兼顾背景和文字 */
+            z-index: -1; /* 伪元素在容器内容下层 */
+        }
+
+        /* 论文标题：白色、斜体、艺术感字体 */
+        .paper-title {
+            color: #ffffff;
+            font-style: italic;
+            font-size: 2.5rem; /* 可根据需要调整大小 */
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5); /* 提升文字在背景图上的可读性 */
+            line-height: 1.4;
+        }
+
+        /* 作者信息容器：包含作者列表+机构索引 */
+        .author-section {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        /* 作者名字链接样式 */
+        .author-link {
+            color: #ffffff;
+            text-decoration: none; /* 去除默认下划线 */
+            border-bottom: 1px dotted #ffffff80; /* 浅白色点状下划线，更优雅 */
+            transition: all 0.3s ease;
+        }
+        .author-link:hover {
+            color: #e0e0e0; /* hover时轻微变浅 */
+            border-bottom: 1px solid #ffffff; /* 实线下划线强化交互 */
+        }
+
+        /* 角标样式优化：大小适配、位置微调 */
+        .author-section sup {
+            font-size: 0.8rem;
+            margin-left: 2px;
+            vertical-align: super;
+        }
+
+        /* 机构索引行样式：和作者行区分，轻微缩进 */
+        .institution-index {
+            margin-top: 0.8rem;
+            font-size: 1rem;
+            opacity: 0.9; /* 轻微透明，突出作者 */
+            padding-left: 1rem; /* 缩进，视觉层级更清晰 */
+        }
+
+        /* 椭圆形链接按钮样式 */
+        .link-btn {
+            display: inline-block;
+            padding: 10px 30px; /* 椭圆比例：上下窄、左右宽 */
+            margin: 0 15px;
+            background-color: rgba(255, 255, 255, 0.2); /* 半透明白色，贴合背景 */
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px; /* 超大圆角实现椭圆形 */
+            border: 1px solid #ffffff; /* 白色边框强化椭圆轮廓 */
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        /* 鼠标悬浮效果 */
+        .link-btn:hover {
+            background-color: #ffffff;
+            color: #2c2c2c; /* 深灰色文字，对比更明显 */
+        }
+
+        /* Abstract 模块样式：无画框、标题居中、左右留空 */
+        .abstract-section {
+            max-width: 900px; /* 控制宽度，左右留大量空间（可根据需求调整，比如800px/1000px） */
+            margin: 4rem auto; /* 上下间距，左右自动居中（实现左右留空） */
+            padding: 0 1rem; /* 小内边距，避免文字贴边 */
+            color: #ffffff;
+        }
+
+        .abstract-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: #ffffff;
+            text-align: center; /* 标题居中 */
+            font-weight: 600;
+        }
+
+        .abstract-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            text-align: justify; /* 正文两端对齐，提升可读性 */
+            text-justify: inter-word; /* 英文单词间距优化 */
+        }
+
+        /* Video Results 模块整体样式（加宽+左右留空） */
+        .video-results-section {
+            max-width: 1200px; /* 加宽模块最大宽度 */
+            margin: 4rem auto;
+            padding: 0 1rem;
+            color: #ffffff;
+        }
+
+        /* Video Results 标题：居中 */
+        .video-results-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* 描述文字样式 */
+        .video-desc {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* 2×2 网格布局（加宽Grid项） */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* 加宽最小列宽 */
+            gap: 2.5rem; /* 网格间距 */
+        }
+
+        /* 每个网格项（圆角画框） */
+        .video-grid-item {
+            background-color: rgba(255, 255, 255, 0.05); /* 浅透明白色画框 */
+            border-radius: 12px; /* 圆角 */
+            padding: 1rem;
+            overflow: hidden; /* 防止内容溢出 */
+        }
+
+        /* 10:3 比例图片容器（裁剪核心：固定宽高比） */
+        .result-img-container {
+            aspect-ratio: 10/3; /* 强制10:3宽高比 */
+            border-radius: 8px;
+            overflow: hidden; /* 裁剪图片溢出部分 */
+            margin-bottom: 1rem;
+        }
+
+        /* 结果图片样式（自适应裁剪核心属性） */
+        .result-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 核心：短边填满，长边居中裁剪 */
+            object-position: center; /* 居中裁剪，保留关键内容 */
+        }
+
+        /* 1:1 视频容器（裁剪核心：固定正方形显示区域） */
+        .result-video-container {
+            aspect-ratio: 1/1; /* 强制1:1宽高比 */
+            border-radius: 8px;
+            overflow: hidden; /* 裁剪视频溢出部分 */
+        }
+
+        /* 视频样式（自适应裁剪核心属性） */
+        .result-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 核心：短边填满1:1容器，长边居中裁剪 */
+            object-position: center; /* 居中裁剪，适配832x480/480x832分辨率 */
+            background-color: #00000030; /* 视频加载前背景 */
+        }
+
+        /* 响应式适配：小屏幕下调整字体和按钮 */
+        @media (max-width: 768px) {
+            .paper-title {
+                font-size: 1.8rem;
+            }
+            .author-section {
+                font-size: 1rem;
+            }
+            .link-btn {
+                display: block;
+                margin: 10px 0;
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部背景图区域 -->
+    <div class="banner">
+        <!-- 论文标题：已替换为指定标题 -->
+        <h1 class="paper-title">MV-S2V: Multi-View Subject-Consistent Video Generation</h1>
+
+        <!-- 作者与机构：已填入指定四位作者+对应机构，角标一一对应 -->
+        <div class="author-section">
+            <!-- 作者列表：每个名字预留链接位置，角标对应机构 -->
+            <div class="author-list">
+                <a href="#" class="author-link">Ziyang Song</a><sup>1</sup>,
+                <a href="#" class="author-link">Xinyu Gong</a><sup>2</sup>,
+                <a href="#" class="author-link">Bangya Liu</a><sup>3</sup>,
+                <a href="#" class="author-link">Zelin Zhao</a><sup>4</sup>
+            </div>
+            <!-- 机构索引：角标对应作者角标 -->
+            <div class="institution-index">
+                <sup>1</sup> The Hong Kong Polytechnic University &nbsp;&nbsp;
+                <sup>2</sup> The University of Texas at Austin &nbsp;&nbsp;
+                <sup>3</sup> University of Wisconsin-Madison &nbsp;&nbsp;
+                <sup>4</sup> Georgia Institute of Technology
+            </div>
+        </div>
+
+        <!-- 椭圆形链接：保留占位，需替换为实际链接 -->
+        <div class="links">
+            <a href="https://arxiv.org/" class="link-btn">ArXiv</a>
+            <a href="https://your-benchmark-link.com" class="link-btn">Benchmark</a>
+        </div>
+    </div>
+
+    <!-- Abstract 模块 -->
+    <div class="abstract-section">
+        <h2>Abstract</h2>
+        <p>Existing Subject-to-Video Generation (S2V) methods have achieved high-fidelity and subject-consistent video generation, yet remain constrained to single-view subject references. This limitation renders the S2V task reducible to an S2I + I2V pipeline, failing to exploit the full potential of video subject control. In this work, we propose and address the challenging Multi-View S2V (MV-S2V) task, which synthesizes videos from multiple reference views to enforce 3D-level subject consistency. Regarding the scarcity of training data, we first develop a synthetic data curation pipeline to generate highly customized synthetic data, complemented by a small-scale real-world captured dataset to boost the training of MV-S2V. Another key issue lies in the potential confusion between cross-subject and cross-view references in conditional generation. To overcome this, we further introduce Temporally Shifted RoPE (TS-RoPE) to distinguish between different subjects and distinct views of the same subject in reference conditioning. Our framework achieves superior 3D subject consistency w.r.t. multi-view reference images and high-quality visual outputs, establishing a new meaningful direction for subject-driven video generation.</p>
+    </div>
+
+    <!-- Video Results 模块（含自适应裁剪+自动播放） -->
+    <div class="video-results-section">
+        <h2>Video Results</h2>
+        <p class="video-desc">Given multi-view reference images for subjects, our MV-S2V can generate videos with multi-view (3D) subject consistency.</p>
+
+        <!-- 2×2 视频结果网格（加宽+裁剪） -->
+        <div class="video-grid">
+            <!-- 网格项1 -->
+            <div class="video-grid-item">
+                <div class="result-img-container">
+                    <img src="./images/results_1_ref.png" alt="Result 1 Reference Images" class="result-img">
+                </div>
+                <div class="result-video-container">
+                    <video autoplay muted loop controls class="result-video">
+                        <source src="./images/results_1_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <!-- 网格项2 -->
+            <div class="video-grid-item">
+                <div class="result-img-container">
+                    <img src="./images/results_2_ref.png" alt="Result 2 Reference Images" class="result-img">
+                </div>
+                <div class="result-video-container">
+                    <video autoplay muted loop controls class="result-video">
+                        <source src="./images/results_2_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <!-- 网格项3 -->
+            <div class="video-grid-item">
+                <div class="result-img-container">
+                    <img src="./images/results_3_ref.png" alt="Result 3 Reference Images" class="result-img">
+                </div>
+                <div class="result-video-container">
+                    <video autoplay muted loop controls class="result-video">
+                        <source src="./images/results_3_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <!-- 网格项4 -->
+            <div class="video-grid-item">
+                <div class="result-img-container">
+                    <img src="./images/results_4_ref.png" alt="Result 4 Reference Images" class="result-img">
+                </div>
+                <div class="result-video-container">
+                    <video autoplay muted loop controls class="result-video">
+                        <source src="./images/results_4_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 若后续需要添加其他内容，可在此处继续扩展 -->
+</body>
+</html>
