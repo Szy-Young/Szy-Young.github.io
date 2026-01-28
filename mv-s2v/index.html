@@ -113,6 +113,7 @@
             color: #2c2c2c; /* 深灰色文字，对比更明显 */
         }
 
+
         /* Abstract 模块样式：无画框、标题居中、左右留空 */
         .abstract-section {
             max-width: 900px; /* 控制宽度，左右留大量空间（可根据需求调整，比如800px/1000px） */
@@ -136,6 +137,7 @@
             text-align: justify; /* 正文两端对齐，提升可读性 */
             text-justify: inter-word; /* 英文单词间距优化 */
         }
+
 
         /* Video Results 模块整体样式 */
         .video-results-section {
@@ -221,6 +223,170 @@
             object-position: center; /* 统一居中裁剪 */
             background-color: #00000030; /* 视频加载前浅黑背景 */
         }
+
+
+        /* Comparison 模块整体样式 */
+        .comparison-section {
+            max-width: 1200px; /* 与Video Results同宽，左右留空 */
+            margin: 4rem auto;
+            padding: 0 1rem;
+            color: #ffffff;
+        }
+
+        /* Comparison 标题：居中，与其他模块风格统一 */
+        .comparison-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* 轮播整体画框：圆角+浅透明背景，无内部边界 */
+        .comparison-carousel {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow: hidden; /* 隐藏轮播溢出内容 */
+        }
+
+        /* 轮播顶部标题栏：标题+左右按钮横向排列 */
+        .carousel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 浅分隔线，不突兀 */
+        }
+
+        /* 轮播例子标题 */
+        .carousel-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* 左右切换按钮：悬浮效果，适配风格 */
+        .carousel-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; /* 核心修改：50% 实现正圆形 */
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .carousel-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* 轮播内容容器：隐藏溢出，核心轮播区域 */
+        .carousel-wrapper {
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        /* 轮播项：默认隐藏，激活时显示 */
+        .carousel-item {
+            display: none;
+            width: 100%;
+            position: relative;
+        }
+        /* 激活的轮播项显示 */
+        .carousel-item.active {
+            display: block;
+            animation: fadeIn 0.5s ease; /* 淡入过渡，切换更流畅 */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 2×3 对比网格：无内部边界，仅靠间距分隔 */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 固定3列，适配2×3 */
+            grid-template-rows: repeat(2, 1fr);    /* 固定2行 */
+            gap: 1.2rem; /* 网格间距，替代边界框，视觉分隔 */
+            height: 100%;
+        }
+
+        /* 左上网格项：文本+图片组合，单独样式（无额外边框） */
+        .comparison-grid-item.heading-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem; /* 文本与图片间距 */
+        }
+
+        /* 对比模块文本框：贴合风格，无边界 */
+        .comparison-text {
+            height: 215px; /* 核心：固定纵向高度（可按需调整，比如40px/50px） */
+            background-color: rgba(45, 45, 45, 0.8); /* 深色背景（可调整透明度） */
+            color: #ffffff;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-size: 0.85rem;
+            padding: 0.8rem 1rem;
+            flex-shrink: 0; /* 防止文本框被压缩 */
+        }
+
+        /* 19.4:5.6 比例图片容器（左上专属） */
+        .comparison-img-container {
+            aspect-ratio: 19.4/5.6; /* 强制宽高比 */
+            overflow: hidden;
+            flex-grow: 1; /* 占满剩余空间 */
+        }
+        /* 对比图片：统一裁剪规则 */
+        .comparison-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 短边对齐，长边居中裁剪 */
+            object-position: center;
+        }
+
+        /* 视频来源标识文字样式：匹配Citation字体 + 与轮播画框背景融合 */
+        .comparison-video-label {
+            width: 100%;
+            box-sizing: border-box; /* 保留：防止内边距溢出宽度 */
+            /* 核心修改1：背景色与轮播画框(.comparison-carousel)完全一致，实现融合 */
+            background-color: rgba(255, 255, 255, 0);
+            /* 核心修改2：字体/颜色匹配Citation引导文字(.citation-desc)，无特殊字体，统一基础风格 */
+            color: #e0e0e0; /* 与Citation引导文字同色，浅灰色更协调 */
+            font-family: inherit; /* 继承页面基础字体，与Citation引导文字完全一致 */
+            font-size: 1.0rem; /* 适配视频区域，比Citation引导文字稍小，不突兀 */
+            font-weight: 500; /* 轻微加粗，标识更清晰，不生硬 */
+            /* 微调内边距：上下紧凑，左右留空，不占过多高度 */
+            padding: 0.4rem 1rem;
+            margin-bottom: 0.6rem; /* 保留：与视频容器的间距，布局协调 */
+            text-align: center; /* 保留：文字居中，视觉整齐 */
+        }
+
+        /* 1:1 比例视频容器（其余5个网格项） */
+        .comparison-video-container {
+            aspect-ratio: 1/1; /* 强制正方形 */
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+        /* 对比视频：统一裁剪+自动播放，与之前视频属性一致 */
+        .comparison-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 短边对齐，长边居中裁剪 */
+            object-position: center;
+            background-color: #00000030;
+        }
+
 
         /* Citation 模块整体样式 */
         .citation-section {
@@ -309,11 +475,13 @@
         </div>
     </div>
 
+
     <!-- Abstract 模块 -->
     <div class="abstract-section">
         <h2>Abstract</h2>
         <p>Existing Subject-to-Video Generation (S2V) methods have achieved high-fidelity and subject-consistent video generation, yet remain constrained to single-view subject references. This limitation renders the S2V task reducible to an S2I + I2V pipeline, failing to exploit the full potential of video subject control. In this work, we propose and address the challenging Multi-View S2V (MV-S2V) task, which synthesizes videos from multiple reference views to enforce 3D-level subject consistency. Regarding the scarcity of training data, we first develop a synthetic data curation pipeline to generate highly customized synthetic data, complemented by a small-scale real-world captured dataset to boost the training of MV-S2V. Another key issue lies in the potential confusion between cross-subject and cross-view references in conditional generation. To overcome this, we further introduce Temporally Shifted RoPE (TS-RoPE) to distinguish between different subjects and distinct views of the same subject in reference conditioning. Our framework achieves superior 3D subject consistency w.r.t. multi-view reference images and high-quality visual outputs, establishing a new meaningful direction for subject-driven video generation.</p>
     </div>
+
 
     <!-- Video Results 模块（2×3 网格 + 直角容器 + 新增文本框） -->
     <div class="video-results-section">
@@ -434,7 +602,145 @@
         </div>
     </div>
 
-    <!-- 若后续需要添加其他内容，可在此处继续扩展 -->
+
+    <!-- Comparison 模块：带左右切换 + 2×3 无边界布局 -->
+    <div class="comparison-section">
+        <h2>Comparison</h2>
+        <!-- 轮播整体画框 -->
+        <div class="comparison-carousel">
+            <!-- 顶部标题栏 + 左右切换按钮 -->
+            <div class="carousel-header">
+                <button class="carousel-btn prev-btn">&lt;</button>
+                <h3 class="carousel-title">Object-Centric (OC): Bunny Racer</h3>
+                <button class="carousel-btn next-btn">&gt;</button>
+            </div>
+            <!-- 轮播内容容器（溢出隐藏） -->
+            <div class="carousel-wrapper">
+                <!-- 轮播项1：第一个对比例子（激活状态） -->
+                <div class="carousel-item active">
+                    <div class="comparison-grid">
+                        <!-- 左上：文本框 + 19.4:5.6 图片 -->
+                        <div class="comparison-grid-item heading-item">
+                            <div class="comparison-text">
+                                The video starts with a small, wooden toy mouse on green wheels placed on a light-colored table in a cozy children's playroom filled with colorful cushions and shelves of neatly arranged toys.
+                                As the camera smoothly orbits around the toy mouse, the background gradually reveals a soft rug beneath the table, framed children's books on low shelves, and a pastel-painted wall adorned with playful animal decals.
+                            </div>
+                            <div class="comparison-img-container">
+                                <img src="./images/comp_1_ref.png" alt="Comparison 1 Reference" class="comparison-img">
+                            </div>
+                        </div>
+                        <!-- 第一行第二列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-label">Phantom-SV</div>
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_1_vid2.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <!-- 第一行第三列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_1_vid3.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <!-- 第二行第一列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_1_vid4.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <!-- 第二行第二列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_1_vid5.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <!-- 第二行第三列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_1_vid6.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 轮播项2：第二个对比例子（默认隐藏） -->
+                <div class="carousel-item">
+                    <div class="comparison-grid">
+                        <!-- 左上：文本框 + 19.4:5.6 图片 -->
+                        <div class="comparison-grid-item heading-item">
+                            <div class="comparison-text">Subject: Car | Multi-View References</div>
+                            <div class="comparison-img-container">
+                                <img src="./images/comp_2_img.png" alt="Comparison 2 Reference" class="comparison-img">
+                            </div>
+                        </div>
+                        <!-- 第一行第二列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_2_vid2.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <!-- 第一行第三列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_2_vid3.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <!-- 第二行第一列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_2_vid4.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <!-- 第二行第二列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_2_vid5.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <!-- 第二行第三列：1:1 视频 -->
+                        <div class="comparison-grid-item">
+                            <div class="comparison-video-container">
+                                <video autoplay muted loop class="comparison-video">
+                                    <source src="./images/comp_2_vid6.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 按需新增轮播项：复制上述carousel-item结构，修改路径和文本即可 -->
+            </div>
+        </div>
+    </div>
+
 
     <!-- Citation 模块 -->
     <div class="citation-section">
