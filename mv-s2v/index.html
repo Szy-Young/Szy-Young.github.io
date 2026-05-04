@@ -335,7 +335,7 @@
             width: 300px;
             background-color: rgba(45, 45, 45, 0.8); /* 深色背景（可调整透明度） */
             border-radius: 12px; /* 圆角大小，可按需调整 */
-            color: #ffffff;
+            color: #ffffff; /* 白色文字 */
             font-family: "Comic Sans MS", cursive, sans-serif;
             font-size: 0.85rem;
             padding: 0.8rem 1rem;
@@ -472,10 +472,16 @@
             </div>
         </div>
 
+        <!-- 会议信息 -->
+        <div class="venue-info" style="color: #ffffff; font-size: 1.3rem; font-weight: 500; margin-top: -0.5rem; margin-bottom: 2.5rem;">
+            SIGGRAPH 2026
+        </div>
+
         <!-- 椭圆形链接：保留占位，需替换为实际链接 -->
         <div class="links">
             <a href="https://arxiv.org/abs/2601.17756" class="link-btn">ArXiv</a>
-            <a href="https://your-benchmark-link.com" class="link-btn">Benchmark</a>
+            <a href="https://szy-young.github.io/mv-s2v" class="link-btn">Code</a>
+            <a href="https://szy-young.github.io/mv-s2v" class="link-btn">Benchmark</a>
         </div>
     </div>
 
@@ -719,7 +725,7 @@
                                 </video>
                             </div>
                         </div>
-                        <!-- 第二行第一列：1:1 视频 -->
+                        <!-- 第二行第一列：1:1 视频（Ours加粗） -->
                         <div class="comparison-grid-item">
                             <div class="comparison-video-label"><b>Ours</b></div>
                             <div class="comparison-video-container">
@@ -902,48 +908,5 @@
       year={2026}
     }</div>
     </div>
-
-
-    // Comparison 轮播切换逻辑
-    <script>
-        // Comparison模块轮播修复+标题同步核心JS（无需修改，直接保留）
-        document.addEventListener('DOMContentLoaded', function() {
-            // 精准获取Comparison模块内的元素，避免全局冲突
-            const comparisonCarousel = document.querySelector('.comparison-carousel');
-            if (!comparisonCarousel) return; // 防止元素不存在报错
-            const prevBtn = comparisonCarousel.querySelector('.prev-btn');
-            const nextBtn = comparisonCarousel.querySelector('.next-btn');
-            const carouselItems = comparisonCarousel.querySelectorAll('.carousel-item');
-            const carouselTitle = comparisonCarousel.querySelector('.carousel-title');
-            let currentIndex = 0;
-
-            // 轮播切换+标题同步核心函数
-            function switchCarousel(index) {
-                // 隐藏所有轮播项
-                carouselItems.forEach(item => item.classList.remove('active'));
-                // 显示当前轮播项
-                const activeItem = carouselItems[index];
-                activeItem.classList.add('active');
-                // 同步更新标题（读取当前轮播项的data-title）
-                carouselTitle.innerText = activeItem.dataset.title || 'Comparison Example';
-                currentIndex = index;
-            }
-
-            // 上一页按钮点击事件（循环切换）
-            prevBtn.addEventListener('click', function() {
-                currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-                switchCarousel(currentIndex);
-            });
-
-            // 下一页按钮点击事件（循环切换）
-            nextBtn.addEventListener('click', function() {
-                currentIndex = (currentIndex + 1) % carouselItems.length;
-                switchCarousel(currentIndex);
-            });
-
-            // 初始化：确保页面加载时标题与第一个轮播项一致
-            switchCarousel(currentIndex);
-        });
-    </script>
 </body>
 </html>
