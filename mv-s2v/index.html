@@ -693,7 +693,7 @@
                 </div>
 
                 <!-- 轮播项2：第二个对比例子（默认隐藏） -->
-                <div class="carousel-item active" data-title="Object-Centric (OC): Chicken Racer">
+                <div class="carousel-item" data-title="Object-Centric (OC): Chicken Racer">
                     <div class="comparison-grid">
                         <!-- 左上：文本框 + 19.4:5.6 图片 -->
                         <div class="comparison-grid-item heading-item">
@@ -759,7 +759,7 @@
                 </div>
 
                 <!-- 轮播项3：第三个对比例子（默认隐藏） -->
-                <div class="carousel-item active" data-title="Human-Object Interaction (HOI): Fire Truck">
+                <div class="carousel-item" data-title="Human-Object Interaction (HOI): Fire Truck">
                     <div class="comparison-grid">
                         <!-- 左上：文本框 + 19.4:5.6 图片 -->
                         <div class="comparison-grid-item heading-item">
@@ -826,7 +826,7 @@
                 </div>
 
                 <!-- 轮播项4：第四个对比例子（默认隐藏） -->
-                <div class="carousel-item active" data-title="Human-Object Interaction (HOI): Remote-control Toy Car">
+                <div class="carousel-item" data-title="Human-Object Interaction (HOI): Remote-control Toy Car">
                     <div class="comparison-grid">
                         <!-- 左上：文本框 + 19.4:5.6 图片 -->
                         <div class="comparison-grid-item heading-item">
@@ -894,6 +894,36 @@
             </div>
         </div>
     </div>
+
+
+    <!-- 轮播切换脚本 -->
+    <script>
+        (function() {
+            const items = document.querySelectorAll('.carousel-item');
+            const title = document.querySelector('.carousel-title');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentIndex = 0;
+
+            function showItem(index) {
+                items.forEach(function(item) {
+                    item.classList.remove('active');
+                });
+                items[index].classList.add('active');
+                title.textContent = items[index].getAttribute('data-title');
+            }
+
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                showItem(currentIndex);
+            });
+
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % items.length;
+                showItem(currentIndex);
+            });
+        })();
+    </script>
 
 
     <!-- Citation 模块 -->
