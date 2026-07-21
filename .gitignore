@@ -9,6 +9,9 @@
 *.gif
 *.mp4
 
+!images/**
+!mv-s2v/images/**
+
 *.npy
 *.npz
 *.pt
