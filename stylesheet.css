@@ -102,13 +102,104 @@ papertitle {
 
 name {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 32px;
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.tagline {
+  display: block;
+  text-align: center;
+  color: #1772d0;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 4px;
+  letter-spacing: 0.2px;
+}
+
+.avatar-frame {
+  display: block;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+}
+
+/* ====== Intro: card-style ====== */
+.intro-card {
+  background: #fafbfc;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.social-links {
+  margin-top: 14px !important;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin: 0 6px;
+  border-radius: 50%;
+  background: #eef1f5;
+  color: #1772d0 !important;
+  vertical-align: middle;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.social-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.social-icon:hover {
+  background: #1772d0;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+.hoverZoomLink {
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.hoverZoomLink:hover {
+  transform: scale(1.05);
 }
 
 .one {
   width: 160px;
-  height: 160px;
   position: relative;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.one img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  transition: transform .3s ease;
+}
+
+.new-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 2;
+  background: #e53935;
+  color: #fff !important;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .two {
@@ -128,4 +219,66 @@ name {
 
 span.highlight {
   background-color: #ffffd0;
+}
+
+/* ====== Publications: outer section card ====== */
+.pub-section {
+  background: #fafbfc;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
+
+/* ====== Publications: card-style rows (sub-cards) ====== */
+.pub-table {
+  border-spacing: 0px 10px !important;
+}
+
+.pub-table tr td:first-child {
+  background: #ffffff;
+  border-radius: 14px 0 0 14px;
+}
+
+.pub-table tr td:last-child {
+  background: #ffffff;
+  border-radius: 0 14px 14px 0;
+}
+
+.pub-table tr td {
+  transition: background .25s ease, box-shadow .25s ease;
+}
+
+.pub-table tr:hover td {
+  background: #f1f4f8;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.pub-table tr:hover .one img {
+  transform: scale(1.06);
+}
+
+.pub-links {
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.pub-btn {
+  display: inline-block;
+  padding: 3px 11px;
+  margin: 3px 6px 3px 0;
+  background: #eef1f5;
+  color: #1772d0 !important;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.pub-btn:hover {
+  background: #1772d0;
+  color: #fff !important;
+  transform: translateY(-1px);
 }
