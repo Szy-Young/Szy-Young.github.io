@@ -285,11 +285,13 @@ span.highlight {
 
 .venue-tag {
   display: inline-block;
-  padding: 1px 0 1px 9px;
-  margin: 3px 0;
-  border-left: 3px solid #6b8fb3;
-  color: #526581;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.2px;
+  padding: 3px 11px;
+  margin: 3px 6px 3px 0;
+  background: #1772d0;
+  color: #fff !important;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  vertical-align: middle;
 }
